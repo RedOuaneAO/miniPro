@@ -18,7 +18,7 @@ struct Race{
 	
 struct RaceCar{
 		char driverName[20] , raceCarColor[20];
-		int totalLaptime;
+		int totalLapTime;
 	};
 	
 	                                       // Print functions section
@@ -49,15 +49,23 @@ return 0;
 
 
  int calculateTimeToCompleteLap(){
+ 	srand(time(0));
    int s;
  	int vitesse=(rand()%(3-1+1)+1);
     int acceleration=(rand()%(3-1+1)+1);
     int nerves =(rand()%(3-1+1)+1);
     s=vitesse +acceleration +nerves;
-    printf("%d",s);
+   // printf("%d\n",s);
+   //printf("%d\n",vitesse);
+   //printf("%d\n",acceleration);
+   //printf("%d\n",nerves);
     return s ;
  }
-void updateRaceCar(struct RaceCar raceCar){
+void updateRaceCar(struct RaceCar *raceCar){
+	
+		raceCar->totalLapTime += calculateTimeToCompleteLap();
+}
+void updateFirstPlace(){
 	
 }
 int main() { 
@@ -69,6 +77,6 @@ struct Race race={6,2,"Mario","rouge"};
   printFirstPlaceAfterLap(race);
   printCongratulation(race);
   calculateTimeToCompleteLap();
-   srand(time(0));
+   
 	return 0;
 }
